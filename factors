@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+from sys import argv
+
+def factorize(value):
+    for i in range(2, value):
+        if value % i == 0:
+            print("{}={}*{}".format(value, i, value // i))
+            return
+
+    if len(argv) != 2:
+        exit()
+
+    try:
+        with open(argv[1]) as file:
+            for line in file:
+                value = int(line.strip())
+                factorize(value)
+    except Exception as e:
+        print("Error: {}".format(e))
