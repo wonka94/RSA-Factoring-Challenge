@@ -4,6 +4,7 @@ import sys
 
 
 def factorize(n):
+    """"factorize integers greater than 1"""
     for i in range(2, n):
         if n % i == 0:
             return (i, n // i)
@@ -11,6 +12,7 @@ def factorize(n):
 
 
 def main():
+    """"print factors"""
     if len(sys.argv) != 2:
         print("Usage: factors <file>")
         return
@@ -20,7 +22,7 @@ def main():
             n = int(line.strip())
             factors = factorize(n)
             if factors is not None:
-                print(f"{n}={factors[1]}*{factors[0]}")
+                print("{:.0f}={:.0f}*{:.0f}".format(n, factors[1], factors[0]))
 
 
 if __name__ == "__main__":
