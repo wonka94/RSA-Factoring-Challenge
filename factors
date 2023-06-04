@@ -16,14 +16,15 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: factors <file>")
         return
-
-    with open(sys.argv[1], "r") as fi:
-        for line in fi:
-            n = int(line.strip())
-            factors = factorize(n)
-            if factors is not None:
-                print("{:.0f}={:.0f}*{:.0f}".format(n, factors[1], factors[0]))
-
+    try:
+        with open(sys.argv[1], "r") as fi:
+            for line in fi:
+                n = int(line.strip())
+                factors = factorize(n)
+                if factors is not None:
+                    print("{:.0f}={:.0f}*{:.0f}".format(n, factors[1], factors[0]))
+    except:
+        pass
 
 if __name__ == "__main__":
     main()
