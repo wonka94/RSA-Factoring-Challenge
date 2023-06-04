@@ -1,30 +1,32 @@
 #!/usr/bin/python3
 
-import sys
+from sys import argv
 
 
-def factorize(n):
-    """"factorize integers greater than 1"""
-    for i in range(2, n):
-        if n % i == 0:
-            return (i, n // i)
-    return None
+def factorize(value):
+    """"print a simple descomposition of an integer > 1"""
+    i = 2
 
-
-def main():
-    """"print factors"""
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
+    if value < 2:
         return
-    try:
-        with open(sys.argv[1], "r") as fi:
-            for line in fi:
-                n = int(line.strip())
-                factors = factorize(n)
-                if factors is not None:
-                    print("{:.0f}={:.0f}*{:.0f}".format(n, factors[1], factors[0]))
-    except:
-        pass
+    print()
+    print(value, "<- value-bef")
+    while value % i:
+        i += 1
+    print("{:.0f}={:.0f}*{:.0f}".format(value, value / i, i))
+    print(value, "<- value-aft")
+    print()
 
-if __name__ == "__main__":
-    main()
+if len(argv) != 2:
+    exit()
+
+try:
+    with open(argv[1]) as file:
+        line = file.readline()
+
+        while line != "":
+            value = int(line.split('\n')[0])
+            factorize(value)
+            line = file.readline()
+except:
+    pass
