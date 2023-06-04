@@ -1,20 +1,27 @@
 #!/usr/bin/python3
 
-from sys import argv
+import sys
 
-def factorize(value):
-    for i in range(2, value):
-        if value % i == 0:
-            print("{}={}*{}".format(value, i, value // i))
-            return
 
-    if len(argv) != 2:
-        exit()
+def factorize(n):
+    for i in range(2, n):
+        if n % i == 0:
+            return (i, n // i)
+    return None
 
-    try:
-        with open(argv[1]) as file:
-            for line in file:
-                value = int(line.strip())
-                factorize(value)
-    except Exception as e:
-        print("Error: {}".format(e))
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
+        return
+
+    with open(sys.argv[1], "r") as fi:
+        for line in fi:
+            n = int(line.strip())
+            factors = factorize(n)
+            if factors is not None:
+                print(f"{n}={factors[1]}*{factors[0]}")
+
+
+if __name__ == "__main__":
+    main()
