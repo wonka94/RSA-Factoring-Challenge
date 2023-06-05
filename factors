@@ -1,26 +1,25 @@
 #!/usr/bin/python3
 
-import sys
+from sys import argv
 
 
 def factorize(n):
     for i in range(2, n):
         if n % i == 0:
-            return (i, n // i)
+            return i
     return None
 
 
 def main():
-    if len(sys.argv) != 2:
+    if len(argv) != 2:
         print("Usage: factors <file>")
         return
 
-    with open(sys.argv[1], "r") as fi:
+    with open(argv[1]) as fi:
         for line in fi:
-            n = int(line.strip())
-            factors = factorize(n)
-            if factors is not None:
-                print(f"{n}={factors[1]}*{factors[0]}")
+            n = int(line)
+            first = factorize(n)
+            print("{}={}*{}".format(n, first, n // first))
 
 
 if __name__ == "__main__":
